@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inscription -Plan Ton Voyage</title>
+    <!-- Lien vers Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+    />
+    <!-- Lien vers ton fichier CSS -->
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+
+  <body class="signup-body">
+    <!-- Barre de navigation élégante -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-transparent shadow-none px-4 py-2"
+    >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="index.html">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="signup.html">Inscription</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="login.html">Connexion</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div
+      class="container mt-5 d-flex justify-content-center align-items-center flex-column"
+    >
+      <h1 class="text-title mb-3 animate-fade-in">
+        Rejoignez <span>PlanTonVoyage</span>
+      </h1>
+      <p class="text-subtitle text-center mb-4 animate-fade-in-delay">
+        Prenez le contrôle de vos aventures avec style et simplicité.
+      </p>
+
+      <form id="signupForm" class="form-container">
+        <div class="mb-3">
+          <label for="name" class="form-label">Nom complet</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Entrez votre nom complet"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Adresse email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Entrez votre email"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Mot de passe</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Choisissez un mot de passe"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label"
+            >Confirmez le mot de passe</label
+          >
+          <input
+            type="password"
+            class="form-control"
+            id="confirmPassword"
+            placeholder="Confirmez le mot de passe"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
+      </form>
+      <p class="text-center mt-3">
+        Déjà un compte ?
+        <a href="login.html" class="text-decoration-none text-link"
+          >Connectez-vous ici</a
+        >
+      </p>
+    </div>
+
+    <script src="../js/script.js"></script>
+  </body>
+</html>
+<style>
+  /* Corps de la page */
+  .signup-body {
+    background: linear-gradient(
+      135deg,
+      #a8e6cf,
+      #dcedc1
+    ); /* Couleurs pastel douces et fraîches */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    color: #333;
+    animation: fadeIn 1.2s ease-out; /* Animation légère pour la page */
+  }
+
+  /* Animation de fond pour la page */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Barre de navigation élégante */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .navbar-light {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .navbar-brand {
+    color: #009688; /* Couleur verte douce */
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .navbar-nav .nav-item .nav-link {
+    color: #00796b;
+    font-weight: 500;
+    padding: 10px 18px;
+    font-size: 1.1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .navbar-nav .nav-item .nav-link:hover {
+    color: #ff4d82; /* Couleur chaude pour attirer l'attention */
+    text-decoration: none;
+    transform: scale(1.05);
+  }
+
+  .navbar-toggler-icon {
+    background-color: #ffb74d;
+  }
+
+  /* Formulaire avec effet d'ombre et boutons arrondis */
+  .form-container {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 100px; /* Ajustement pour que le formulaire ne soit pas caché sous la navbar */
+    animation: slideUp 1s ease-out, fadeIn 1s ease-out; /* Animation d'apparition douce */
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Titre élégant et captivant */
+  .text-title {
+    color: #df65ce; /* Couleur fraîche et apaisante */
+    font-size: 2.8rem;
+    font-weight: bold;
+    animation: slideInFromLeft 1s ease-out; /* Animation d'entrée subtile pour le titre */
+  }
+
+  @keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .text-title span {
+    color: #fffc4d; /* Accent orange pour ajouter du dynamisme */
+    font-style: italic;
+  }
+
+  /* Sous-titre */
+  .text-subtitle {
+    color: #ca631e; /* Un vert vif mais doux */
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    animation: fadeIn 1.5s ease-out;
+  }
+
+  /* Champs de formulaire */
+  .form-control {
+    border: 2px solid #009688;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    animation: fadeIn 2s ease-out; /* Animation légère sur chaque champ de formulaire */
+  }
+
+  .form-control:focus {
+    box-shadow: 0 0 8px rgba(0, 150, 136, 0.8);
+    border-color: #ffb74d;
+    transform: scale(1.02);
+  }
+
+  /* Bouton avec effet */
+  .btn-gradient {
+    background: linear-gradient(
+      135deg,
+      #ffb74d,
+      #ff8a65
+    ); /* Dégradé orange et pêche */
+    border-color: #ffb74d;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    animation: fadeIn 2s ease-out; /* Animation d'apparition du bouton */
+  }
+
+  .btn-gradient:hover {
+    background: linear-gradient(135deg, #ff8a65, #ffb74d);
+    border-color: #ff8a65;
+    transform: scale(1.05);
+  }
+
+  /* Lien */
+  .text-link {
+    color: #00796b;
+    font-weight: bold;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+  }
+
+  .text-link:hover {
+    color: #ffb74d;
+    text-decoration: underline;
+  }
+
+  /* Responsiveness */
+  @media (max-width: 576px) {
+    .form-container {
+      padding: 20px;
+    }
+
+    .text-title {
+      font-size: 2.2rem;
+    }
+  } /* Bouton S'inscrire */
+  .btn-primary {
+    background-color: #81c784; /* Couleur verte douce qui s'harmonise avec un thème léger */
+    border-color: #66bb6a; /* Bordure plus foncée pour le contraste */
+    color: white; /* Texte blanc pour un bon contraste */
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+  }
+
+  .btn-primary:hover {
+    background-color: #66bb6a; /* Changement de couleur lors du survol */
+    border-color: #81c784; /* Bordure claire pour l'effet hover */
+    transform: scale(1.05); /* Effet de zoom pour attirer l'attention */
+  }
+
+  .btn-primary:focus {
+    outline: none; /* Retirer le contour par défaut */
+    box-shadow: 0 0 8px rgba(182, 126, 86, 0.6); /* Ombre douce autour du bouton lors du focus */
+  }
+</style>

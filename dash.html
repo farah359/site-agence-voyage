@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planifiez Votre Voyage</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lien vers Google Fonts pour la nouvelle police -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="dash.css" />
+  </head>
+  <style>
+    :root {
+      --primary-black: #121212;
+      --primary-yellow: #ffd700; /* Jaune */
+      --primary-violet: #6a0dad; /* Violet */
+      --primary-blue: #87ceeb; /* Bleu clair */
+      --secondary-light: #f0f8ff; /* Bleu très clair */
+      --text-color-light: #333;
+      --bg-color-light: #f9f9f9;
+      --text-color-dark: #ffffff;
+      --bg-color-dark: #121212;
+    }
+
+    body.light-mode {
+      background-color: var(--bg-color-light);
+      color: var(--text-color-light);
+      font-family: "Poppins", sans-serif; /* Utilisation de la police Poppins */
+      line-height: 1.6;
+    }
+
+    body.dark-mode {
+      background-color: var(--bg-color-dark);
+      color: var(--text-color-dark);
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+    }
+
+    .navbar {
+      background-color: var(--primary-violet); /* Violet */
+      font-family: "Poppins", sans-serif;
+    }
+
+    .navbar-brand,
+    .nav-link {
+      color: var(--text-color-dark) !important;
+      font-size: 1.1em;
+      font-weight: 600;
+    }
+
+    .navbar-brand:hover,
+    .nav-link:hover {
+      color: var(--primary-yellow) !important;
+    }
+
+    .hero-section {
+      background: linear-gradient(
+        135deg,
+        var(--primary-violet),
+        var(--primary-blue)
+      );
+      color: var(--text-color-dark);
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .hero-section h1 {
+      font-size: 3.5em;
+      font-weight: 600;
+      letter-spacing: 1px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .hero-section p {
+      font-size: 1.2em;
+      margin-top: 10px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-control {
+      background-color: var(--bg-color-light);
+      border: 1px solid var(--primary-blue);
+      color: var(--text-color-light);
+      padding: 12px;
+      border-radius: 8px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 10px var(--primary-yellow);
+      border-color: var(--primary-yellow);
+      outline: none;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-violet);
+      border: none;
+      font-weight: 600;
+      padding: 12px 25px;
+      transition: background-color 0.3s ease, color 0.3s ease,
+        transform 0.3s ease;
+      border-radius: 8px;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-yellow);
+      color: var(--primary-black);
+      transform: scale(1.05);
+    }
+
+    .gallery img {
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    footer {
+      background-color: var(--primary-violet);
+      color: var(--text-color-dark);
+      padding: 20px 0;
+      text-align: center;
+      margin-top: 50px;
+      font-size: 1.1em;
+    }
+
+    .footer-link {
+      color: var(--primary-yellow);
+      text-decoration: none;
+    }
+
+    .footer-link:hover {
+      text-decoration: underline;
+      color: var(--primary-blue);
+    }
+
+    .dark-mode-toggle {
+      cursor: pointer;
+      color: var(--text-color-dark);
+      font-size: 1.1em;
+    }
+
+    .dark-mode-toggle:hover {
+      text-decoration: underline;
+    }
+
+    .btn-floating {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      border-radius: 50%;
+      padding: 20px;
+      font-size: 1.5em;
+      background-color: var(--primary-violet);
+      color: var(--text-color-dark);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .btn-floating:hover {
+      transform: scale(1.1);
+      background-color: var(--primary-yellow);
+    }
+  </style>
+  <body class="light-mode">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html" id="accueilBtn">Voyage+</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Profil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link dark-mode-toggle" id="darkModeToggle"
+                >🌙 Mode Sombre</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-danger" href="login.html">Déconnexion</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <h1>Prêt pour l'Aventure ?</h1>
+      <p>Planifiez vos voyages de rêve en quelques clics.</p>
+    </div>
+
+    <!-- Form to Plan a Trip -->
+    <div class="container mt-5">
+      <h2 class="text-center">Planifiez votre Voyage</h2>
+      <form>
+        <div class="row mt-4">
+          <div class="col-md-4">
+            <label for="destination" class="form-label">Destination</label>
+            <input
+              type="text"
+              class="form-control"
+              id="destination"
+              placeholder="Entrez votre destination"
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="startDate" class="form-label">Date de départ</label>
+            <input type="date" class="form-control" id="startDate" />
+          </div>
+          <div class="col-md-4">
+            <label for="endDate" class="form-label">Date de retour</label>
+            <input type="date" class="form-control" id="endDate" />
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-primary">Planifier</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="container mt-5">
+      <h2 class="text-center">Galerie des Destinations</h2>
+      <div class="row mt-4 gallery">
+        <div class="col-md-4">
+          <img src="paris.jpeg" alt="Paris" class="img-fluid" />
+          <h5 class="text-center mt-2">Paris 🇫🇷 - La ville de l'amour ❤️</h5>
+        </div>
+        <div class="col-md-4">
+          <img src="bali.jpeg" alt="Bali" class="img-fluid" />
+          <h5 class="text-center mt-2">Bali 🇮🇩 - Paradis tropical 🌴</h5>
+        </div>
+        <div class="col-md-4">
+          <img src="egypt.jpeg" alt="Égypte" class="img-fluid" />
+          <h5 class="text-center mt-2">
+            Égypte 🇪🇬 - Mystères des pyramides 🏺
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        © 2024 Voyage+ - Tous droits réservés. |
+        <a href="#" class="footer-link">Mentions Légales</a>
+      </p>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <button class="btn btn-floating" id="callToAction">
+      ✈️ Planifiez Maintenant
+    </button>
+
+    <script>
+      // Toggle Mode Sombre/Clair
+      const toggleDarkMode = document.getElementById("darkModeToggle");
+      toggleDarkMode.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        document.body.classList.toggle("light-mode");
+        toggleDarkMode.textContent = document.body.classList.contains(
+          "dark-mode"
+        )
+          ? "☀️ Mode Clair"
+          : "🌙 Mode Sombre";
+      });
+
+      // Event for Accueil Button
+      document
+        .getElementById("accueilBtn")
+        .addEventListener("click", function () {
+          window.location.href = "index.html"; // Lien vers la page d'accueil
+        });
+
+      // Afficher un message de succès après la soumission
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert("Votre voyage a été planifié avec succès !");
+      });
+    </script>
+  </body>
+</html>
